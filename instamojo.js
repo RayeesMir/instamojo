@@ -1,5 +1,6 @@
 'use strict';
 var request = require('request');
+var crypto=require('crypto');
 var BASE_URL='https://test.instamojo.com/api/1.1/';
 var ENDPOINTS = {	
 	'CREATE': 'payment-requests/',
