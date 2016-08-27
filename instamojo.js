@@ -29,6 +29,18 @@ module.exports = {
 			callback(error, result, body);
 		})
 	},
+	verifyMac:function(data,salt,callback){
+		var mac=data.mac;
+		var str="";
+		delete data.mac;
+		var keys=Object.keys(data).sort();
+		keys.forEach(function(key){
+			str=str+obj[key]+'|';
+		})
+		var hashString=str.substr(0,str.length-1)
+		var hash = crypto.createHmac('sha1', salt).update(hashString).digest('hex')
+		return callback(mac===hash);
+	},
 	createRequest: function(data, callback) {
 		var url= BASE_URL + ENDPOINTS.CREATE;
 		this.caller(url,'POST',callback,data);
