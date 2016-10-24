@@ -45,7 +45,7 @@ function Instamojo(env, key, token, salt) {
         'refund_amount': ''
     };
 }
-module.exports = {	
+Instamojo.prototype = {	
 	
 	caller: function(url, method, callback,data) {
 		var self = this;
@@ -132,3 +132,5 @@ module.exports = {
 		this.paymentFields.redirect_url = url;
 	}
 }
+
+module.exports = Instamojo;
